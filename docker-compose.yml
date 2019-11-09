@@ -26,4 +26,5 @@ services:
     ports:
       - "80:80"
     environment:
-      ASPNETCORE_URLS: http://*:80  
+      ASPNETCORE_URLS: http://*:80
+      RIOT_APIKEY: helloworld

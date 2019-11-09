@@ -35,6 +35,7 @@ namespace SummonerAPI
             services.AddTransient<IHttpResponseHandler, HttpResponseHandler>();
             services.AddTransient<IRiotApiUriService, RiotApiUriService>();
             services.AddTransient<IRiotApiSummonerRepository, RiotApiSummonerRepository>();
+            services.AddTransient<ISummonerService, SummonerService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,7 +46,7 @@ namespace SummonerAPI
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
+//            app.UseHttpsRedirection();
 
             app.UseRouting();
 

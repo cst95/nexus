@@ -1,5 +1,6 @@
 ﻿using System.Net.Http;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 using Summoner.Models.RiotApi;
 
 namespace Summoner.Repository
@@ -10,11 +11,11 @@ namespace Summoner.Repository
         private readonly IRiotApiUriService _uriService;
         private readonly string _apiKey;
 
-        public RiotApiClient(HttpClient httpClient, IRiotApiUriService uriService)
+        public RiotApiClient(HttpClient httpClient, IRiotApiUriService uriService, IConfiguration config)
         {
             _httpClient = httpClient;
             _uriService = uriService;
-            _apiKey = "sasasas";
+            _apiKey = config["APIKEY"];
         }
 
         public Task<HttpResponseMessage> GetSummonerAsync(Platform platform, Endpoint endpoint, string identifier)
