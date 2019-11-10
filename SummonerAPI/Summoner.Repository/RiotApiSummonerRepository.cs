@@ -23,14 +23,15 @@ namespace Summoner.Repository
             var response = new RepositoryResponse<SummonerDto>()
             {
                 Message = handledResponse.Message,
-                Success = handledResponse.Success
+                Success = handledResponse.Success,
+                ResponseType = handledResponse.ResponseType
             };
 
             try
             {
                 response.Item = JsonSerializer.Deserialize<SummonerDto>(handledResponse.ResponseBody, new JsonSerializerOptions(){ PropertyNameCaseInsensitive = true});
             }
-            catch (JsonException exception)
+            catch (JsonException)
             {
                 response.Item = null;
             }

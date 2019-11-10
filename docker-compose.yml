@@ -20,7 +20,7 @@ services:
   #     depends_on:
   #       - mongo
   summoner.api:
-    image: nexus-summoner.api:latest
+    image: nexus-summoner.api
     build:
       context: ./SummonerAPI
     ports:
@@ -28,4 +28,5 @@ services:
     environment:
       ASPNETCORE_URLS: http://*:80
       ASPNETCORE_ENVIRONMENT: Development
-      RIOT_APIKEY: helloworld
+    env_file:
+      ./nexus.env

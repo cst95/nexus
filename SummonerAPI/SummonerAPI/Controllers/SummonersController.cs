@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Summoner.Models.RiotApi;
 using Summoner.Service;
 
 namespace SummonerAPI.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("[controller]/{platform}")]
     public class SummonersController : ControllerBase
     {
         private readonly ISummonerService _summonerService;
@@ -16,11 +17,19 @@ namespace SummonerAPI.Controllers
         }
 
         [HttpGet("by-name/{summonerName}")]
-        public ActionResult GetSummonerByName([FromRoute] string summonerName)
+        public async Task<ActionResult> GetSummonerByName([FromRoute] Platform platform, [FromRoute] string summonerName)
         {
-            var summoner = _summonerService.GetSummonerByName(Platform.Euw1, summonerName);
-            return Ok(summoner);
+            var summonerResponse = await _summonerService.GetSummonerByName(platform, summonerName);
+
+            switch (summonerResponse.ResponseType)
+            {
+                case ResponseType.Ok:
+                    return Ok(summonerResponse);
+                case ResponseType.NotFound:
+                    return NotFound(summonerResponse);
+                default:
+                    return StatusCode(500);
+            }
         }
-        
     }
 }
