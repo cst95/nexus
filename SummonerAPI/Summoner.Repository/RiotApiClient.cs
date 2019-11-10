@@ -7,22 +7,24 @@ namespace Summoner.Repository
 {
     public class RiotApiClient : IRiotApiClient
     {
-        private readonly HttpClient _httpClient;
+        private const string RiotApiKeyEnvVariableName = "RIOT_APIKEY";
         private readonly IRiotApiUriService _uriService;
         private readonly string _apiKey;
+        private readonly IHttpClientFactory _httpClientFactory;
 
-        public RiotApiClient(HttpClient httpClient, IRiotApiUriService uriService, IConfiguration config)
+        public RiotApiClient(IHttpClientFactory httpClientFactory, IRiotApiUriService uriService, IConfiguration config)
         {
-            _httpClient = httpClient;
+            _httpClientFactory = httpClientFactory;
             _uriService = uriService;
-            _apiKey = config["APIKEY"];
+            _apiKey = config[RiotApiKeyEnvVariableName];
         }
 
         public Task<HttpResponseMessage> GetSummonerAsync(Platform platform, Endpoint endpoint, string identifier)
         {
             var pathForRequest = _uriService.GetUriForRequest(platform, endpoint, identifier, _apiKey);
-
-            return _httpClient.GetAsync(pathForRequest);
+            var httpClient = _httpClientFactory.CreateClient();
+            
+            return httpClient.GetAsync(pathForRequest);
         }
     }
 }

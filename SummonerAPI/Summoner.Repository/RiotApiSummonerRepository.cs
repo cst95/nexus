@@ -18,7 +18,7 @@ namespace Summoner.Repository
         public async Task<RepositoryResponse<SummonerDto>> GetSummonerByNameAsync(Platform platform, string summonerName)
         {
             var rawResponse = await _riotApiClient.GetSummonerAsync(platform, Endpoint.GetSummonerByName, summonerName);
-            var handledResponse = _responseHandler.HandleRiotApiResponse(rawResponse);
+            var handledResponse = await  _responseHandler.HandleRiotApiResponseAsync(rawResponse);
 
             var response = new RepositoryResponse<SummonerDto>()
             {
@@ -28,9 +28,9 @@ namespace Summoner.Repository
 
             try
             {
-                response.Item = JsonSerializer.Deserialize<SummonerDto>(handledResponse.ResponseBody);
+                response.Item = JsonSerializer.Deserialize<SummonerDto>(handledResponse.ResponseBody, new JsonSerializerOptions(){ PropertyNameCaseInsensitive = true});
             }
-            catch (JsonException)
+            catch (JsonException exception)
             {
                 response.Item = null;
             }
