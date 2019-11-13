@@ -1,9 +1,9 @@
 using System;
-using System.ComponentModel.Design;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Serilog;
 using Serilog.Events;
+using Serilog.Formatting.Compact;
 
 namespace SummonerAPI
 {
@@ -12,9 +12,10 @@ namespace SummonerAPI
         public static void Main(string[] args)
         {
             Log.Logger = new LoggerConfiguration()
-                .MinimumLevel.Debug()
+                .MinimumLevel.Override("Microsoft.AspNetCore", LogEventLevel.Warning)
                 .Enrich.FromLogContext()
                 .WriteTo.Console()
+                .WriteTo.File(new RenderedCompactJsonFormatter(), "log.json")
                 .CreateLogger();
 
             try
