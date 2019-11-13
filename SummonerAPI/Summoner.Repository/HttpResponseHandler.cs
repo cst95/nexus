@@ -1,12 +1,13 @@
 ﻿using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using Summoner.Models.RiotApi;
 
 namespace Summoner.Repository
 {
     public class HttpResponseHandler : IHttpResponseHandler
     {
-        public ApiResponse HandleRiotApiResponse(HttpResponseMessage response)
+        public async Task<ApiResponse> HandleRiotApiResponseAsync(HttpResponseMessage response)
         {
             var responseType = GetResponseType(response);
 
@@ -14,7 +15,7 @@ namespace Summoner.Repository
             {
                 Success = responseType == ResponseType.Ok,
                 ResponseType = GetResponseType(response),
-                ResponseBody = response.ToString(),
+                ResponseBody = await response.Content.ReadAsStringAsync(),
                 Message = GetMessage(responseType)
             };
         }

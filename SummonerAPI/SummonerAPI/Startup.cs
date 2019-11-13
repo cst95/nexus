@@ -1,15 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using Serilog;
 using Summoner.Repository;
 using Summoner.Service;
 
@@ -28,13 +22,14 @@ namespace SummonerAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddHttpClient();
 
             services.AddTransient<IRiotApiConfigService, RiotApiConfigService>();
             services.AddTransient<IRiotApiClient, RiotApiClient>();
-            services.AddHttpClient<IRiotApiClient, RiotApiClient>();
             services.AddTransient<IHttpResponseHandler, HttpResponseHandler>();
             services.AddTransient<IRiotApiUriService, RiotApiUriService>();
             services.AddTransient<IRiotApiSummonerRepository, RiotApiSummonerRepository>();
+            services.AddTransient<ISummonerService, SummonerService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,8 +39,10 @@ namespace SummonerAPI
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            app.UseHttpsRedirection();
+            
+            app.UseSerilogRequestLogging();
+            
+//            app.UseHttpsRedirection();
 
             app.UseRouting();
 
