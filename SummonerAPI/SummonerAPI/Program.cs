@@ -15,7 +15,6 @@ namespace SummonerAPI
                 .MinimumLevel.Override("Microsoft.AspNetCore", LogEventLevel.Warning)
                 .Enrich.FromLogContext()
                 .WriteTo.Console()
-                .WriteTo.File(new RenderedCompactJsonFormatter(), "log.json")
                 .CreateLogger();
 
             try

@@ -19,12 +19,22 @@ services:
   #       ME_CONFIG_MONGODB_ADMINPASSWORD: example
   #     depends_on:
   #       - mongo
+  apigateway:
+    image: apigateway
+    build:
+      context: ./APIGateway
+    environment:
+      ASPNETCORE_URLS: http://*:80
+      ASPNETCORE_ENVIRONMENT: Development
+    ports:
+      - "80:80"
+    env_file:
+      ./nexus.env
+
   summoner.api:
     image: nexus-summoner.api
     build:
       context: ./SummonerAPI
-    ports:
-      - "80:80"
     environment:
       ASPNETCORE_URLS: http://*:80
       ASPNETCORE_ENVIRONMENT: Development

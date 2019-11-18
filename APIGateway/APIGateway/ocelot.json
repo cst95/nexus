@@ -1,0 +1,19 @@
+﻿{
+  "ReRoutes": [
+    {
+      "DownstreamPathTemplate": "/summoners/{remainder}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "summoner.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/summoners/{remainder}",
+      "UpstreamHttpMethod": [ "Get" ]
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "https://local.nexus.io"
+  }
+}  
