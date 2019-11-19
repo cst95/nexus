@@ -12,9 +12,9 @@ namespace SummonerAPI
         public static void Main(string[] args)
         {
             Log.Logger = new LoggerConfiguration()
-                .MinimumLevel.Override("Microsoft.AspNetCore", LogEventLevel.Warning)
                 .Enrich.FromLogContext()
                 .WriteTo.Console()
+                .WriteTo.File(new RenderedCompactJsonFormatter(), "logs.json")
                 .CreateLogger();
 
             try

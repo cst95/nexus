@@ -14,6 +14,7 @@
     }
   ],
   "GlobalConfiguration": {
-    "BaseUrl": "https://local.nexus.io"
+    "BaseUrl": "https://local.nexus.io",
+    "RequestIdKey": "X-Correlation-Id"
   }
 }  

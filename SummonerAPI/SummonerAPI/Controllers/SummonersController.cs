@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Summoner.Models.RiotApi;
 using Summoner.Service;
 
@@ -10,10 +11,12 @@ namespace SummonerAPI.Controllers
     public class SummonersController : ControllerBase
     {
         private readonly ISummonerService _summonerService;
+        private readonly ILogger<SummonersController> _logger;
 
-        public SummonersController(ISummonerService summonerService)
+        public SummonersController(ISummonerService summonerService, ILogger<SummonersController> logger)
         {
             _summonerService = summonerService;
+            _logger = logger;
         }
 
         [HttpGet("by-name/{summonerName}")]
