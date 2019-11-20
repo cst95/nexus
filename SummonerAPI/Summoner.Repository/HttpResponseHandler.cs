@@ -1,16 +1,29 @@
 ﻿using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using Summoner.Models.RiotApi;
 
 namespace Summoner.Repository
 {
     public class HttpResponseHandler : IHttpResponseHandler
     {
+        private readonly ILogger<HttpResponseHandler> _logger;
+
+        public HttpResponseHandler(ILogger<HttpResponseHandler> logger)
+        {
+            _logger = logger;
+        }
+        
         public async Task<ApiResponse> HandleRiotApiResponseAsync(HttpResponseMessage response)
         {
             var responseType = GetResponseType(response);
 
+            if (response.StatusCode == HttpStatusCode.Forbidden)
+            {
+                _logger.LogError("Riot Games API key has expired.");
+            }
+            
             return new ApiResponse
             {
                 Success = responseType == ResponseType.Ok,
