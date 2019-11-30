@@ -10,6 +10,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Serilog;
+using Serilog.Context;
 
 namespace MatchAPI
 {
@@ -31,12 +33,19 @@ namespace MatchAPI
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+            app.UseSerilogRequestLogging();
 
-            app.UseHttpsRedirection();
+            app.Use(async (httpContext, next) =>
+            {
+                if (httpContext.Request.Headers.TryGetValue("X-Correlation-Id", out var correlationId))
+                {
+                    LogContext.PushProperty("CorrelationId", correlationId.ToString());
+                }
+
+                await next.Invoke();
+            });
+            
+//            app.UseHttpsRedirection();
 
             app.UseRouting();
 

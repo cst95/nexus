@@ -19,12 +19,12 @@ namespace SummonerAPI
 
             try
             {
-                Log.Information("Starting web host");
+                Log.Information("Starting SummonerAPI");
                 CreateHostBuilder(args).Build().Run();
             }
             catch (Exception ex)
             {
-                Log.Fatal(ex, "Host terminated unexpectedly");
+                Log.Fatal(ex, "SummonerAPI terminated unexpectedly");
             }
             finally
             {

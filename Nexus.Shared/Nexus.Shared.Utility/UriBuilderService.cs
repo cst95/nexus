@@ -1,15 +1,15 @@
 ﻿using System;
-using System.Collections.Specialized;
 using System.IO;
-using Summoner.Models.RiotApi;
+using Nexus.Shared.Models.RiotApi;
+using Nexus.Shared.Utility.Interfaces;
 
-namespace Summoner.Repository
+namespace Nexus.Shared.Utility
 {
-    public class RiotApiUriService : IRiotApiUriService
+    public class UriBuilderService : IUriBuilderService
     {
         private readonly IRiotApiConfigRepository _riotApiConfigRepository;
 
-        public RiotApiUriService(IRiotApiConfigRepository riotApiConfigRepository)
+        public UriBuilderService(IRiotApiConfigRepository riotApiConfigRepository)
         {
             _riotApiConfigRepository = riotApiConfigRepository;
         }

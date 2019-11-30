@@ -1,4 +1,4 @@
-﻿﻿﻿namespace Summoner.Models.RiotApi
+﻿﻿namespace Nexus.Shared.Models.RiotApi
 {
     public enum Platform
     {

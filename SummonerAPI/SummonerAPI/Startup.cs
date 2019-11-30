@@ -27,7 +27,7 @@ namespace SummonerAPI
             services.AddControllers();
             services.AddHttpClient();
 
-            services.AddTransient<IRiotApiConfigService, RiotApiConfigService>();
+            services.AddTransient<IRiotApiConfigRepository, RiotApiConfigRepository>();
             services.AddTransient<IRiotApiClient, RiotApiClient>();
             services.AddTransient<IHttpResponseHandler, HttpResponseHandler>();
             services.AddTransient<IRiotApiUriService, RiotApiUriService>();

@@ -3,7 +3,7 @@ using Summoner.Models.RiotApi;
 
 namespace Summoner.Repository
 {
-    public class RiotApiConfigService : IRiotApiConfigService
+    public class RiotApiConfigRepository : IRiotApiConfigRepository
     {
         private readonly Dictionary<Platform, string> _platformRoutingValues = new Dictionary<Platform, string>()
         {

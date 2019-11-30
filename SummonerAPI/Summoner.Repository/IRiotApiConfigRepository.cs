@@ -3,7 +3,7 @@ using Summoner.Models.RiotApi;
 
 namespace Summoner.Repository
 {
-    public interface IRiotApiConfigService
+    public interface IRiotApiConfigRepository
     {
         string GetPlatformRoute(Platform platform);
         string GetEndpointPath(Endpoint endpoint);

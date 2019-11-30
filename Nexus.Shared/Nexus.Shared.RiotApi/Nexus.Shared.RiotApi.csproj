@@ -5,7 +5,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Match.Repository\Match.Repository.csproj" />
+      <ProjectReference Include="..\Nexus.Shared.Models\Nexus.Shared.Models.csproj" />
+      <ProjectReference Include="..\Nexus.Shared.Utility\Nexus.Shared.Utility.csproj" />
     </ItemGroup>
 
 </Project>

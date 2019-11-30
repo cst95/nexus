@@ -4,7 +4,7 @@
     "SummonerAPI": {
       "commandName": "Project",
       "launchBrowser": false,
-      "launchUrl": "summoner/test/stokes1e",
+      "launchUrl": "summoners/euw1/stokes1e",
       "applicationUrl": "http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
