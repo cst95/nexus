@@ -2,6 +2,9 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Nexus.Repository.Extensions;
+using Nexus.Service.Extensions;
+using Nexus.Utility.Extensions;
 using Serilog;
 
 namespace Nexus.API
@@ -20,6 +23,10 @@ namespace Nexus.API
         {
             services.AddControllers();
             services.AddHttpClient();
+            services.RegisterRepositoryExtensions();
+            services.RegisterServiceDependencies();
+            services.RegisterUtilityDependencies();
+            services.RegisterUtilityDependencies();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

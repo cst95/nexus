@@ -6,6 +6,6 @@ namespace Nexus.RiotApi.Interfaces
 {
     public interface IRiotApiClient 
     {
-        Task<HttpResponseMessage> GetResponseAsync(Platform platform, Endpoint endpoint, string identifier, string apiKey);
+        Task<HttpResponseMessage> GetResponseAsync(Platform platform, Endpoint endpoint, string identifier);
     }
 }
