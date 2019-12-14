@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Nexus.Repository.Extensions;
+using Nexus.RiotApi.Extensions;
 using Nexus.Service.Extensions;
 using Nexus.Utility.Extensions;
 using Serilog;
@@ -26,7 +27,7 @@ namespace Nexus.API
             services.RegisterRepositoryExtensions();
             services.RegisterServiceDependencies();
             services.RegisterUtilityDependencies();
-            services.RegisterUtilityDependencies();
+            services.RegisterRiotApiDependencies();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
