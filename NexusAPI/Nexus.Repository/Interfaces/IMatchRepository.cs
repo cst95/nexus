@@ -8,5 +8,6 @@ namespace Nexus.Repository.Interfaces
     public interface IMatchRepository
     {
         Task<RepositoryResponse<MatchlistDto>> GetMatchesByAccountIdAsync(Platform platform, string encryptedAccountId);
+        Task<RepositoryResponse<MatchDto>> GetMatchByIdAsync(Platform platform, string matchId);
     }
 }

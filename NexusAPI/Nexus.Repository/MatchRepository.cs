@@ -21,5 +21,10 @@ namespace Nexus.Repository
             return _nexusRiotApiClient.GetResponseAsync<MatchlistDto>(platform, Endpoint.GetMatchesByAccountId,
                 encryptedAccountId);
         }
+
+        public Task<RepositoryResponse<MatchDto>> GetMatchByIdAsync(Platform platform, string matchId)
+        {
+            return _nexusRiotApiClient.GetResponseAsync<MatchDto>(platform, Endpoint.GetMatchByMatchId, matchId);
+        }
     }
 }

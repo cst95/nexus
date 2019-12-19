@@ -20,5 +20,10 @@ namespace Nexus.Service
         {
             return _matchRepository.GetMatchesByAccountIdAsync(platform, encryptedAccountId);
         }
+
+        public Task<RepositoryResponse<MatchDto>> GetMatchByMatchIdAsync(Platform platform, string matchId)
+        {
+            return _matchRepository.GetMatchByIdAsync(platform, matchId);
+        }
     }
 }

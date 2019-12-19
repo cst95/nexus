@@ -17,7 +17,7 @@ namespace Nexus.API.Controllers
         }
         
         [HttpGet("by-accountid/{encryptedAccountId}")]
-        public async Task<ActionResult> GetSummonerByName([FromRoute] Platform platform, [FromRoute] string encryptedAccountId)
+        public async Task<ActionResult> GetMatchesByAccountId([FromRoute] Platform platform, [FromRoute] string encryptedAccountId)
         {
             var matchListResponse = await _matchService.GetMatchesByAccountIdAsync(platform, encryptedAccountId);
 
@@ -27,6 +27,22 @@ namespace Nexus.API.Controllers
                     return Ok(matchListResponse);
                 case ResponseType.NotFound:
                     return NotFound(matchListResponse);
+                default:
+                    return StatusCode(500);
+            }
+        }
+        
+        [HttpGet("by-matchid/{matchId}")]
+        public async Task<ActionResult> GetMatchById([FromRoute] Platform platform, [FromRoute] string matchId)
+        {
+            var matchResponse = await _matchService.GetMatchByMatchIdAsync(platform, matchId);
+
+            switch (matchResponse.ResponseType)
+            {
+                case ResponseType.Ok:
+                    return Ok(matchResponse);
+                case ResponseType.NotFound:
+                    return NotFound(matchResponse);
                 default:
                     return StatusCode(500);
             }
