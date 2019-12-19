@@ -1,4 +1,4 @@
-﻿﻿namespace Nexus.Model.RiotApi
+﻿﻿namespace Nexus.Model.RiotApi.Summoner
 {
     public class SummonerDto
     {

@@ -6,6 +6,6 @@ namespace Nexus.RiotApi.Interfaces
 {
     public interface INexusRiotApiClient
     {
-        Task<RepositoryResponse<T>> GetResponseAsync<T>(Platform platform, string summonerName) where T: class;
+        Task<RepositoryResponse<T>> GetResponseAsync<T>(Platform platform, Endpoint endpoint, string identifier) where T: class;
     }
 }

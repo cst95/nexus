@@ -5,6 +5,8 @@
         GetSummonerByAccountId,
         GetSummonerByName,
         GetSummonerByPuuid,
-        GetSummonerBySummonerId
+        GetSummonerBySummonerId,
+        GetMatchByMatchId,
+        GetMatchesByAccountId
     }
 }

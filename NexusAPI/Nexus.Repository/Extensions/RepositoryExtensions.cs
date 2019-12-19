@@ -8,6 +8,7 @@ namespace Nexus.Repository.Extensions
         public static void RegisterRepositoryExtensions(this IServiceCollection serviceCollection)
         {
             serviceCollection.AddTransient<ISummonerRepository, SummonerRepository>();
+            serviceCollection.AddTransient<IMatchRepository, MatchRepository>();
         }
     }
 }

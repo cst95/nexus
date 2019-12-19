@@ -18,9 +18,9 @@ namespace Nexus.RiotApi
             _responseHandler = responseHandler;
         }
 
-        public async Task<RepositoryResponse<T>> GetResponseAsync<T>(Platform platform, string summonerName) where T: class
+        public async Task<RepositoryResponse<T>> GetResponseAsync<T>(Platform platform, Endpoint endpoint, string identifier) where T: class
         {
-            var rawResponse = await _riotApiClient.GetResponseAsync(platform, Endpoint.GetSummonerByName, summonerName);
+            var rawResponse = await _riotApiClient.GetResponseAsync(platform, endpoint, identifier);
             var handledResponse = await  _responseHandler.HandleRiotApiResponseAsync(rawResponse);
 
             var response = new RepositoryResponse<T>()

@@ -27,6 +27,8 @@
             {Endpoint.GetSummonerByName, "lol/summoner/v4/summoners/by-name"},
             {Endpoint.GetSummonerByPuuid, "lol/summoner/v4/summoners/by-puuid"},
             {Endpoint.GetSummonerBySummonerId, "lol/summoner/v4/summoners"},
+            {Endpoint.GetMatchByMatchId, "lol/match/v4/matches"},
+            {Endpoint.GetMatchesByAccountId, "lol/match/v4/matchlists/by-account"},
         };
         
         public string GetPlatformRoute(Platform platform) => _platformRoutingValues.GetValueOrDefault(platform);

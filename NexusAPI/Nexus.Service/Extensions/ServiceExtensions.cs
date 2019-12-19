@@ -8,6 +8,7 @@ namespace Nexus.Service.Extensions
         public static void RegisterServiceDependencies(this IServiceCollection serviceCollection)
         {
             serviceCollection.AddTransient<ISummonerService, SummonerService>();
+            serviceCollection.AddTransient<IMatchService, MatchService>();
         }
     }
 }
